@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import NavigationWrapper from "@/components/NavigationWrapper";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Inventori",
-  description: "Inventori Frontend",
+  title: "Sistem Inventori Nantech",
+  description: "Inventory System for Nantech",
 };
 
 export default function RootLayout({
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <NavigationWrapper>
+          {children}
+        </NavigationWrapper>
       </body>
     </html>
   );
