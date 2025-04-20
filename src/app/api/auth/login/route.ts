@@ -27,10 +27,10 @@ export async function POST(req: NextRequest) {
 
     const user = users[0];
     
-    const authToken = Buffer.from(`${user.id}:${user.username}:${Date.now()}`).toString('base64');
+    const authToken = Buffer.from(`${user.id}:${user.username}:${user.role}:${Date.now()}`).toString('base64');
     
     const cookieStore = cookies();
-    await cookieStore.set({
+    (await cookieStore).set({
       name: 'auth-token',
       value: authToken,
       httpOnly: true,
