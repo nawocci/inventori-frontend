@@ -31,7 +31,6 @@ export default function AddItem() {
     }
   }, [user, isAdmin, router]);
   
-  // Fetch categories and suppliers
   useEffect(() => {
     async function fetchData() {
       try {
@@ -56,7 +55,6 @@ export default function AddItem() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     
-    // Convert numeric values
     if (name === 'stock') {
       setFormData(prev => ({
         ...prev,
@@ -82,7 +80,6 @@ export default function AddItem() {
     setIsSubmitting(true);
     
     try {
-      // Validate form
       if (!formData.name.trim()) {
         throw new Error("Item name is required");
       }
@@ -91,7 +88,6 @@ export default function AddItem() {
         throw new Error("Category is required");
       }
       
-      // Create item
       await createItem({
         name: formData.name.trim(),
         category_id: parseInt(formData.category_id as string, 10),
@@ -101,7 +97,6 @@ export default function AddItem() {
       
       setSuccess("Item added successfully!");
       
-      // Reset form
       setFormData({
         name: "",
         category_id: "",
@@ -144,14 +139,12 @@ export default function AddItem() {
         </button>
       </div>
       
-      {/* Error message */}
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
           {error}
         </div>
       )}
       
-      {/* Success message */}
       {success && (
         <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded mb-4">
           {success}
